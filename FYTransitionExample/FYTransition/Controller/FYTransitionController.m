@@ -113,6 +113,8 @@ const CGFloat kFYTransitionControllerHorizontalSpace = 10;
 - (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC{
     
     if (fromVC == self) {
+        
+        /// set  the Navgation's delegate is nil at this time , Otherwise the Application might explode , Boom! Boom! Boom!
         self.navigationController.delegate = nil;
         return _transitionHelper.popAnimator;
     } else if (toVC == self){
