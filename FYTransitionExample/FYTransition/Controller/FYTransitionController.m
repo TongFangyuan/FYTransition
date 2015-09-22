@@ -26,7 +26,7 @@ const CGFloat kFYTransitionControllerHorizontalSpace = 10;
     self.transitioningDelegate = self;
     NSAssert(originalImageView != nil, @"originalImageView can't be nil");
     if (self) {
-        self.view.backgroundColor = [UIColor darkGrayColor];
+//        self.view.backgroundColor = [UIColor darkGrayColor];
         [self setOriginalImageView:originalImageView];
         
     }
