@@ -328,7 +328,7 @@
 		811D37C11BB12754009224C3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = IOS;
 				TargetAttributes = {
 					811D37C81BB12754009224C3 = {
@@ -472,6 +472,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -549,6 +550,7 @@
 					"-framework",
 					Reveal,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "github.com.TongFangyuan.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -569,6 +571,7 @@
 					"-framework",
 					Reveal,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "github.com.TongFangyuan.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -587,6 +590,7 @@
 				);
 				INFOPLIST_FILE = FYTransitionExampleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "github.com.TongFangyuan.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FYTransitionExample.app/FYTransitionExample";
 			};
@@ -602,6 +606,7 @@
 				);
 				INFOPLIST_FILE = FYTransitionExampleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "github.com.TongFangyuan.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FYTransitionExample.app/FYTransitionExample";
 			};
