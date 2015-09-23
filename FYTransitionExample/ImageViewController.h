@@ -8,7 +8,7 @@
 
 #import "FYTransitionController.h"
 
-@interface ImageViewController : FYTransitionController
+@interface ImageViewController : FYTransitionController 
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 

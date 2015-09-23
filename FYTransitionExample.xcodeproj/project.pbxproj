@@ -43,6 +43,8 @@
 		811D38AD1BB14C57009224C3 /* BaseCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 811D38AB1BB14C57009224C3 /* BaseCollectionViewCell.xib */; };
 		8130D1871BB153B400D06F75 /* ModalCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8130D1861BB153B400D06F75 /* ModalCollectionViewController.m */; };
 		8130D18A1BB1549700D06F75 /* PushCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8130D1891BB1549700D06F75 /* PushCollectionViewController.m */; };
+		815740191BB2A90F00C354B4 /* CustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815740171BB2A90F00C354B4 /* CustomViewController.m */; };
+		8157401A1BB2A90F00C354B4 /* CustomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 815740181BB2A90F00C354B4 /* CustomViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +111,9 @@
 		8130D1861BB153B400D06F75 /* ModalCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalCollectionViewController.m; sourceTree = "<group>"; };
 		8130D1881BB1549700D06F75 /* PushCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushCollectionViewController.h; sourceTree = "<group>"; };
 		8130D1891BB1549700D06F75 /* PushCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushCollectionViewController.m; sourceTree = "<group>"; };
+		815740161BB2A90F00C354B4 /* CustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewController.h; sourceTree = "<group>"; };
+		815740171BB2A90F00C354B4 /* CustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewController.m; sourceTree = "<group>"; };
+		815740181BB2A90F00C354B4 /* CustomViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +246,9 @@
 				811D38951BB13DD7009224C3 /* ImageViewController.h */,
 				811D38961BB13DD7009224C3 /* ImageViewController.m */,
 				811D38971BB13DD7009224C3 /* ImageViewController.xib */,
+				815740161BB2A90F00C354B4 /* CustomViewController.h */,
+				815740171BB2A90F00C354B4 /* CustomViewController.m */,
+				815740181BB2A90F00C354B4 /* CustomViewController.xib */,
 			);
 			name = ImageViewController;
 			sourceTree = "<group>";
@@ -377,6 +385,7 @@
 				811D383A1BB13874009224C3 /* icon_08.jpg in Resources */,
 				811D383B1BB13874009224C3 /* icon_09.jpg in Resources */,
 				811D38331BB13874009224C3 /* icon_01.jpg in Resources */,
+				8157401A1BB2A90F00C354B4 /* CustomViewController.xib in Resources */,
 				811D383C1BB13874009224C3 /* icon_10.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -404,6 +413,7 @@
 				811D38941BB13DB3009224C3 /* FYTransitionHelper.m in Sources */,
 				8130D18A1BB1549700D06F75 /* PushCollectionViewController.m in Sources */,
 				811D37F61BB127CA009224C3 /* MainViewController.m in Sources */,
+				815740191BB2A90F00C354B4 /* CustomViewController.m in Sources */,
 				811D37CF1BB12754009224C3 /* main.m in Sources */,
 				811D389C1BB149D1009224C3 /* BaseTableViewController.m in Sources */,
 				811D38911BB13DB3009224C3 /* FYTransitionController.m in Sources */,

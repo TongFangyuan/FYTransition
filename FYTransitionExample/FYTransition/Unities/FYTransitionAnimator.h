@@ -11,8 +11,8 @@
 
 @interface FYTransitionAnimator : NSObject <UIViewControllerAnimatedTransitioning>
 
-@property (strong, nonatomic, readonly) FYTransitionData *sourceData;
-@property (strong, nonatomic, readonly) FYTransitionData *presentedData;
+@property (strong, nonatomic, readwrite) FYTransitionData *sourceData;
+@property (strong, nonatomic, readwrite) FYTransitionData *presentedData;
 
 //// designated initializer method, creat presentAnimator, pushAnimator default.
 - (instancetype)initWithOriginalData:(FYTransitionData *)originalData finalData:(FYTransitionData *)finalData;

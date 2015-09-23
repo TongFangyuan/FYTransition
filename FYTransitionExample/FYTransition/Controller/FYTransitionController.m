@@ -62,20 +62,18 @@ const CGFloat kFYTransitionControllerStatusHeight = 20;
         __strong typeof(weakSelf) strongSelf = weakSelf;
         
         if (didComepleted) {
-            [strongSelf setupFinalImageView:imageView];
+            [strongSelf fy_transitionCompleteAnimateImageView:imageView];
         }
     }];
 }
 
 - (CGRect)correctFinalImageViewFrame{
     
-    CGRect imgFrame = [self finalImageViewFrame];
-    CGFloat topSpace =  kFYTransitionControllerNavgationaHeight + kFYTransitionControllerStatusHeight;
-    
-    return CGRectMake(imgFrame.origin.x, imgFrame.origin.y + topSpace, imgFrame.size.width, imgFrame.size.height);
+    CGRect imgFrame = [self fy_transitionFinalImageViewFrame];
+    return CGRectMake(imgFrame.origin.x, imgFrame.origin.y, imgFrame.size.width, imgFrame.size.height);
 }
 
-- (CGRect)finalImageViewFrame{
+- (CGRect)fy_transitionFinalImageViewFrame{
     
     CGRect  screenBounds = [UIScreen mainScreen].bounds;
     CGFloat screenWith = screenBounds.size.width;
@@ -85,13 +83,13 @@ const CGFloat kFYTransitionControllerStatusHeight = 20;
     CGFloat imgHeight = imgWith;
     
     CGFloat imgX = (screenWith - imgWith) * 0.5;
-    CGFloat imgY = (screenHeight - imgHeight) * 0.5 - kFYTransitionControllerNavgationaHeight - kFYTransitionControllerStatusHeight;
+    CGFloat imgY = (screenHeight - imgHeight) * 0.5;
     
     return CGRectMake(imgX, imgY, imgWith, imgHeight);
 }
 
 
-- (void)setupFinalImageView:(UIImageView *)imgView{
+- (void)fy_transitionCompleteAnimateImageView:(UIImageView *)imgView{
     UIImageView *finalImageView = [[UIImageView alloc] initWithImage:imgView.image];
     finalImageView.frame = imgView.frame;
     [self.view addSubview:finalImageView];
@@ -99,11 +97,11 @@ const CGFloat kFYTransitionControllerStatusHeight = 20;
     _finalImageView.backgroundColor = [UIColor clearColor];;
     _finalImageView.userInteractionEnabled = YES;
     _finalImageView.clipsToBounds = YES;
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFinalImageView:)];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPrivateFinalImageView:)];
     [_finalImageView addGestureRecognizer:tapGesture];
 }
 
-- (void)tapFinalImageView:(UITapGestureRecognizer *)tapGesture{
+- (void)tapPrivateFinalImageView:(UITapGestureRecognizer *)tapGesture{
     
     if (self.navigationController.delegate == self) {
         [self.navigationController popViewControllerAnimated:YES];

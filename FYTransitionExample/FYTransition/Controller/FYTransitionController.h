@@ -9,14 +9,19 @@
 #import <UIKit/UIKit.h>
 
 
+@protocol FYTransitionProtocol <NSObject>
+
+@required
+- (CGRect)fy_transitionFinalImageViewFrame;
+- (void)fy_transitionCompleteAnimateImageView:(UIImageView *)imageView;
+
+@end
+
 
 @interface FYTransitionController : UIViewController<UIViewControllerTransitioningDelegate,UINavigationControllerDelegate>
 
 //// designated initializer method
 - (instancetype) initWithOriginalImageView:(UIImageView *)originalImageView;
-
-
-- (CGRect)finalImageViewFrame;
 
 @end
 

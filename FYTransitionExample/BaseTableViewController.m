@@ -33,13 +33,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row == 0) {
+    if (indexPath.row == 0 && indexPath.section == 0) {
         ModalCollectionViewController *bcVC = [[ModalCollectionViewController alloc] initWithNibName:@"BaseCollectionViewController" bundle:nil];
-        bcVC.title = @"Nodal";
+        bcVC.title = @"Modal";
         [self.navigationController pushViewController:bcVC animated:YES];
-    } else if(indexPath.row == 1){
+    } else if(indexPath.row == 1 && indexPath.section == 0){
         PushCollectionViewController *bcVC = [[PushCollectionViewController alloc] initWithNibName:@"BaseCollectionViewController" bundle:nil];
         bcVC.title = @"Push";
+        [self.navigationController pushViewController:bcVC animated:YES];
+    } else if (indexPath.row == 0 && indexPath.section == 1){
+        ModalCollectionViewController *bcVC = [[ModalCollectionViewController alloc] initWithNibName:@"BaseCollectionViewController" bundle:nil];
+        bcVC.isCustom = YES;
+        bcVC.title = @"CustomModal";
+        [self.navigationController pushViewController:bcVC animated:YES];
+    } else if (indexPath.row == 1 && indexPath.section == 1){
+        PushCollectionViewController *bcVC = [[PushCollectionViewController alloc] initWithNibName:@"BaseCollectionViewController" bundle:nil];
+        bcVC.title = @"Custom_Push";
+        bcVC.isCustom = YES;
         [self.navigationController pushViewController:bcVC animated:YES];
     }
     

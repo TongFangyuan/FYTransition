@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "BaseCollectionViewCell.h"
 #import "ImageViewController.h"
+#import "CustomViewController.h"
 
 @interface BaseCollectionViewController : UICollectionViewController
+
+@property(nonatomic ,assign) BOOL isCustom;
 
 @end

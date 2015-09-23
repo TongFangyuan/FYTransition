@@ -30,9 +30,17 @@
     NSLog(@"%@", cell.imageView);
     UIImageView *oImageView = [[UIImageView alloc] initWithImage:cell.imageView.image];
     oImageView.frame =[cell.imageView convertRect:cell.imageView.frame toView:self.view];
-    ImageViewController *imageVC = [[ImageViewController alloc] initWithOriginalImageView:oImageView];
-    self.navigationController.delegate = imageVC;  
-    [self.navigationController pushViewController:imageVC animated:YES];
+    
+    if (self.isCustom) {
+        CustomViewController *imageVC = [[CustomViewController alloc] initWithOriginalImageView:oImageView];
+        self.navigationController.delegate = imageVC;
+        [self.navigationController pushViewController:imageVC animated:YES];
+    } else {
+        ImageViewController *imageVC = [[ImageViewController alloc] initWithOriginalImageView:oImageView];
+        self.navigationController.delegate = imageVC;
+        [self.navigationController pushViewController:imageVC animated:YES];
+    }
+    
     
 }
 

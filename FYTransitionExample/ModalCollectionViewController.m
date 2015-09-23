@@ -30,12 +30,22 @@
     NSLog(@"%@", cell.imageView);
     UIImageView *oImageView = [[UIImageView alloc] initWithImage:cell.imageView.image];
     oImageView.frame =[cell.imageView convertRect:cell.imageView.frame toView:self.view];
-    ImageViewController *imageVC = [[ImageViewController alloc] initWithOriginalImageView:oImageView];
-    imageVC.transitioningDelegate = imageVC;
-    imageVC.view.backgroundColor = [UIColor darkGrayColor];
-    [self presentViewController:imageVC animated:YES completion:^{
-        imageVC.titleLabel.text = cell.label.text;
-    }];
+    
+    if (self.isCustom) {
+        CustomViewController *imageVC = [[CustomViewController alloc] initWithOriginalImageView:oImageView];
+        imageVC.transitioningDelegate = imageVC;
+        imageVC.view.backgroundColor = [UIColor darkGrayColor];
+        [self presentViewController:imageVC animated:YES completion:^{
+        }];
+    } else {
+        ImageViewController *imageVC = [[ImageViewController alloc] initWithOriginalImageView:oImageView];
+        imageVC.transitioningDelegate = imageVC;
+        imageVC.view.backgroundColor = [UIColor darkGrayColor];
+        [self presentViewController:imageVC animated:YES completion:^{
+            imageVC.titleLabel.text = cell.label.text;
+        }];
+    }
+    
     
 }
 

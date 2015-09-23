@@ -16,16 +16,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     NSLog(@"%@", self.view.subviews);
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (CGRect)finalImageViewFrame{
-    return CGRectMake(5, 20, 300, 300);
 }
 
 
