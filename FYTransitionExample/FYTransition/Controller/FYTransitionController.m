@@ -10,6 +10,8 @@
 #import "FYTransitionHelper.h"
 
 const CGFloat kFYTransitionControllerHorizontalSpace = 10;
+const CGFloat kFYTransitionControllerNavgationaHeight = 44;
+const CGFloat kFYTransitionControllerStatusHeight = 20;
 
 @interface FYTransitionController ()
 
@@ -23,10 +25,10 @@ const CGFloat kFYTransitionControllerHorizontalSpace = 10;
 
 - (instancetype)initWithOriginalImageView:(UIImageView *)originalImageView{
     self = [super init];
-    self.transitioningDelegate = self;
+    
     NSAssert(originalImageView != nil, @"originalImageView can't be nil");
     if (self) {
-//        self.view.backgroundColor = [UIColor darkGrayColor];
+        
         [self setOriginalImageView:originalImageView];
         
     }
@@ -49,14 +51,8 @@ const CGFloat kFYTransitionControllerHorizontalSpace = 10;
     UIImageView *sourceImageView= [[UIImageView alloc] initWithImage:originalImageView.image];
     sourceImageView.frame = originalImageView.frame;
     
-    CGRect   screenBounds = [UIScreen mainScreen].bounds;
-    CGPoint imgCenter = CGPointMake(screenBounds.size.width *0.5, screenBounds.size.height * 0.5);
-    CGFloat imgWith = screenBounds.size.width - kFYTransitionControllerHorizontalSpace *2;
-    CGSize  imgSize = CGSizeMake(imgWith, imgWith);
-    CGRect  imgBounds = CGRectMake(0, 0, imgSize.width, imgSize.height);
     UIImageView *finalImageView = [[UIImageView alloc] initWithImage:sourceImageView.image];
-    finalImageView.bounds = imgBounds;
-    finalImageView.center = imgCenter;
+    finalImageView.frame = [self correctFinalImageViewFrame];
     
     FYTransitionHelper *animatorHelper = [[FYTransitionHelper alloc] initWithOriginalImageView:sourceImageView finalImageView:finalImageView];
     _transitionHelper = animatorHelper;
@@ -71,19 +67,29 @@ const CGFloat kFYTransitionControllerHorizontalSpace = 10;
     }];
 }
 
-- (void)setupFinalImageView {
+- (CGRect)correctFinalImageViewFrame{
     
-    UIImageView *finalImageView = [[UIImageView alloc] init];
-    finalImageView.frame = _transitionHelper.presentAnimator.presentedData.frame;
-    [self.view addSubview:finalImageView];
-    _finalImageView = finalImageView;
-    _finalImageView.userInteractionEnabled = NO;
-    _finalImageView.clipsToBounds = YES;
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFinalImageView:)];
-    [_finalImageView addGestureRecognizer:tapGesture];
+    CGRect imgFrame = [self finalImageViewFrame];
+    CGFloat topSpace =  kFYTransitionControllerNavgationaHeight + kFYTransitionControllerStatusHeight;
     
-    
+    return CGRectMake(imgFrame.origin.x, imgFrame.origin.y + topSpace, imgFrame.size.width, imgFrame.size.height);
 }
+
+- (CGRect)finalImageViewFrame{
+    
+    CGRect  screenBounds = [UIScreen mainScreen].bounds;
+    CGFloat screenWith = screenBounds.size.width;
+    CGFloat screenHeight = screenBounds.size.height;
+    
+    CGFloat imgWith = screenWith - kFYTransitionControllerHorizontalSpace *2;
+    CGFloat imgHeight = imgWith;
+    
+    CGFloat imgX = (screenWith - imgWith) * 0.5;
+    CGFloat imgY = (screenHeight - imgHeight) * 0.5 - kFYTransitionControllerNavgationaHeight - kFYTransitionControllerStatusHeight;
+    
+    return CGRectMake(imgX, imgY, imgWith, imgHeight);
+}
+
 
 - (void)setupFinalImageView:(UIImageView *)imgView{
     UIImageView *finalImageView = [[UIImageView alloc] initWithImage:imgView.image];
@@ -104,6 +110,20 @@ const CGFloat kFYTransitionControllerHorizontalSpace = 10;
     } else if (self.transitioningDelegate == self) {
         [self dismissViewControllerAnimated:YES completion:nil];
     }
+    
+}
+
+- (void)setupFinalImageView {
+    
+    UIImageView *finalImageView = [[UIImageView alloc] init];
+    finalImageView.frame = _transitionHelper.presentAnimator.presentedData.frame;
+    [self.view addSubview:finalImageView];
+    _finalImageView = finalImageView;
+    _finalImageView.userInteractionEnabled = NO;
+    _finalImageView.clipsToBounds = YES;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFinalImageView:)];
+    [_finalImageView addGestureRecognizer:tapGesture];
+    
     
 }
 

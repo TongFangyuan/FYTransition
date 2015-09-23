@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+
+
 @interface FYTransitionController : UIViewController<UIViewControllerTransitioningDelegate,UINavigationControllerDelegate>
 
 //// designated initializer method
 - (instancetype) initWithOriginalImageView:(UIImageView *)originalImageView;
 
+
+- (CGRect)finalImageViewFrame;
+
 @end
+
