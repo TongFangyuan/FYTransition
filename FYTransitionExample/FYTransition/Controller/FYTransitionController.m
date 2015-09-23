@@ -119,7 +119,7 @@ const CGFloat kFYTransitionControllerStatusHeight = 20;
     _finalImageView = finalImageView;
     _finalImageView.userInteractionEnabled = NO;
     _finalImageView.clipsToBounds = YES;
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFinalImageView:)];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPrivateFinalImageView:)];
     [_finalImageView addGestureRecognizer:tapGesture];
     
     
