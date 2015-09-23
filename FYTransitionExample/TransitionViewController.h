@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "FYTransition.h"
+#import "FYTransitionAnimator.h"
 
-@interface TransitionViewController : UIViewController<FYTransitionAnimating, FYTransitionDelegate>
+@interface TransitionViewController : UIViewController<FYTransitionAnimatoring, FYTransitionAnimatorDelegate>
+
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property(nonatomic ,strong)FYTransitionAnimator  *transitionAnimator;
 
 @end

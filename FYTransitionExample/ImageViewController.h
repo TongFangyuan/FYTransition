@@ -10,6 +10,7 @@
 
 @interface ImageViewController : FYTransitionController
 
+@property (weak, nonatomic) IBOutlet UIImageView *mainImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end

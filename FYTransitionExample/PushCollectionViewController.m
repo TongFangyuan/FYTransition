@@ -32,22 +32,14 @@
     UIImageView *oImageView = [[UIImageView alloc] initWithImage:cell.imageView.image];
     oImageView.frame =[cell.imageView convertRect:cell.imageView.frame toView:self.view];
     
-    FYTransitionData *data = [[FYTransitionData alloc] init];
-    data.imageView = oImageView;
-    data.frame = oImageView.frame;
-    FYTransition *transition = [FYTransition sharedTransition];
-    [transition setupAnimatorWithData:data];
-    self.navigationController.delegate = transition;
+    FYTransitionData *data = [[FYTransitionData alloc] initWithImageView:oImageView filename:nil];
+    FYTransitionAnimator *animator = [[FYTransitionAnimator alloc] initWithSourceData:data];
+    self.navigationController.delegate = animator;
     TransitionViewController *tc = [[TransitionViewController alloc] init];
-    transition.transitionAnimating = tc;
-    [self.navigationController pushViewController:tc animated:YES];
-    return;
+    tc.transitionAnimator = animator;
+    animator.transitionAnimating = tc;
     
-//    UIImageView *oImageView = [[UIImageView alloc] initWithImage:cell.imageView.image];
-//    oImageView.frame =[cell.imageView convertRect:cell.imageView.frame toView:self.view];
-//    ImageViewController *imageVC = [[ImageViewController alloc] initWithOriginalImageView:oImageView];
-//    self.navigationController.delegate = imageVC;  
-//    [self.navigationController pushViewController:imageVC animated:YES];
+    [self.navigationController pushViewController:tc animated:YES];
     
 }
 

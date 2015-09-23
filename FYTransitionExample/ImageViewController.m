@@ -25,7 +25,7 @@
 }
 
 - (CGRect)finalImageViewFrame{
-    return CGRectMake(5, 20, 300, 300);
+    return self.mainImageView.frame;
 }
 
 

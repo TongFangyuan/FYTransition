@@ -11,6 +11,15 @@
 
 @implementation FYTransitionData
 
-
+- (instancetype)initWithImageView:(UIImageView *)imageView filename:(NSString *)filename{
+    self = [super init];
+    if (self) {
+        _imageView = imageView;
+        _filename = filename;
+        _frame = imageView.frame;
+        _image = imageView.image;
+    }
+    return self;
+}
 
 @end

@@ -16,5 +16,6 @@
 @property(nonatomic, copy)   NSString * filename;
 @property(nonatomic, strong) UIImage * image;
 
+- (instancetype)initWithImageView:(UIImageView *)imageView filename:(NSString *)filename;
 
 @end

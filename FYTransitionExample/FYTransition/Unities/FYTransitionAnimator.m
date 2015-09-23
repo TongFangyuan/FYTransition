@@ -24,13 +24,23 @@ static const NSTimeInterval kAnimationCompleteDuration = 0.2;
 
 @implementation FYTransitionAnimator
 
+- (instancetype)initWithSourceData:(FYTransitionData *)sourceData{
+    self = [super init];
+    NSParameterAssert(sourceData);
+    if (self) {
+        _goforward = YES;
+        _sourceData = sourceData;
+    }
+    return self;
+}
+
 - (instancetype)initWithOriginalData:(FYTransitionData *)originalData finalData:(FYTransitionData *)finalData {
     
     self = [super init];
     
+    NSParameterAssert(originalData);
+    NSParameterAssert(finalData);
     if (self) {
-        NSParameterAssert(originalData);
-        NSParameterAssert(finalData);
         FYTransitionData *sData = [[FYTransitionData alloc] init];
         sData.imageView = originalData.imageView;
         sData.frame = originalData.frame;
@@ -81,7 +91,9 @@ static const NSTimeInterval kAnimationCompleteDuration = 0.2;
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         sourceImageView.frame = _presentedData.frame;
+                         UIViewController *vc =(UIViewController *)self.transitionAnimating;
+                         NSLog(@"%@", vc.view.subviews);
+                         sourceImageView.frame = [self.transitionAnimating fy_transitionImageViewFrame];
                          sourceImageView.transform = CGAffineTransformMakeScale(1.2, 1.2);
                          transitionView.alpha = 0.8;
                      } completion:^(BOOL finished) {
@@ -127,17 +139,85 @@ static const NSTimeInterval kAnimationCompleteDuration = 0.2;
 }
 
 
-#pragma mark - block
 
-- (void)setTransitionCompletionBlock:(void (^)(BOOL, UIImageView *))completionBlock{
-    self.transitionCompletion = completionBlock;
+
+#pragma mark  UINavigationControllerDelegate
+
+- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC{
+    
+    if (self.isGoforward) {
+        self.goforward = NO;
+        return [self forwardAnimator];
+    } else if (!self.isGoforward){
+        navigationController.delegate = nil;
+        return [self backwordAnimator];
+    }
+    return nil;
 }
 
-- (void)setTransitionDataCompletionBlock:(void (^)(BOOL, FYTransitionData *))completionBlock{
-    self.transitionCompletionData = completionBlock;
+#pragma mark  UIViewControllerTransitioningDelegate
+
+- (id<UIViewControllerAnimatedTransitioning>)
+animationControllerForPresentedController:(UIViewController *)presented
+presentingController:(UIViewController *)presenting
+sourceController:(UIViewController *)source {
+    
+    if (self.isGoforward) {
+        self.goforward = NO;
+        return [self forwardAnimator];
+    }
+    return nil;
 }
+
+- (id<UIViewControllerAnimatedTransitioning>)
+animationControllerForDismissedController:(UIViewController *)dismissed {
+    
+    if (dismissed.transitioningDelegate == self) {
+        dismissed.transitioningDelegate = nil;
+        return [self backwordAnimator];
+    }
+    return nil;
+    
+}
+
+- (FYTransitionAnimator *)forwardAnimator{
+    FYTransitionAnimator *forwardAnimator = [[FYTransitionAnimator alloc] init];
+    forwardAnimator.sourceData = self.sourceData;
+    
+    CGRect presentFrame;
+    if ([self.transitionAnimating conformsToProtocol:@protocol(FYTransitionAnimatoring)]
+        &&[self.transitionAnimating respondsToSelector:@selector(fy_transitionImageViewFrame)]) {
+        presentFrame = [self.transitionAnimating fy_transitionImageViewFrame];
+    }
+    
+    FYTransitionData *presentData = [[FYTransitionData alloc] init];
+    presentData.frame = presentFrame;
+    presentData.filename = forwardAnimator.sourceData.filename;
+    forwardAnimator.presentedData = presentData;
+    
+    return forwardAnimator;
+}
+
+- (FYTransitionAnimator *)backwordAnimator{
+    
+    FYTransitionAnimator *animator = [self forwardAnimator];
+    return [FYTransitionAnimator backwordAnimatorFromForwordAnimator:animator];
+}
+
+#pragma mark  CompletionBlock
+
+- (void)setTransitionCompletionBlock:(void (^)(BOOL, UIImageView *))block{
+    self.transitionCompletion = block;
+}
+
+- (void)setTransitionDataCompletionBlock:(void (^)(BOOL, FYTransitionData *))block{
+    self.transitionCompletionData = block;
+}
+
 @end
 
+
+#pragma mark - extension
 
 @implementation FYTransitionAnimator(Push)
 

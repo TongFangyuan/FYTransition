@@ -59,14 +59,6 @@
     presentData.filename = forwardAnimator.sourceData.filename;
     forwardAnimator.presentedData = presentData;
     
-    __weak __typeof(self)weakSelf = self;
-    [forwardAnimator setTransitionDataCompletionBlock:^(BOOL didComepleted, FYTransitionData *finalData) {
-        __strong __typeof(weakSelf)strongSelf = weakSelf;
-        if (strongSelf.transitionAnimating != nil && [strongSelf.transitionAnimating respondsToSelector:@selector(fy_transitionDidComplete:)]) {
-            [strongSelf.transitionAnimating fy_transitionDidComplete:finalData];
-        }
-    }];
-    
     return forwardAnimator;
 }
 

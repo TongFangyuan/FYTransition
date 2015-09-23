@@ -9,10 +9,29 @@
 #import <Foundation/Foundation.h>
 #import "FYTransitionData.h"
 
-@interface FYTransitionAnimator : NSObject <UIViewControllerAnimatedTransitioning>
+@protocol FYTransitionAnimatoring <NSObject>
+
+@required
+- (CGRect)fy_transitionImageViewFrame;
+
+@end
+
+@protocol FYTransitionAnimatorDelegate <NSObject>
+
+- (void)fy_transitionDidComplete:(FYTransitionData *)data;
+
+@end
+
+@interface FYTransitionAnimator : NSObject <UIViewControllerAnimatedTransitioning,UIViewControllerTransitioningDelegate, UINavigationControllerDelegate>
+
+@property (nonatomic, weak) id <FYTransitionAnimatoring, FYTransitionAnimatorDelegate> transitionAnimating;
 
 @property (strong, nonatomic, readwrite) FYTransitionData *sourceData;
 @property (strong, nonatomic, readwrite) FYTransitionData *presentedData;
+
+@property(nonatomic, assign, getter=isGoforward) BOOL goforward;
+
+- (instancetype)initWithSourceData:(FYTransitionData *)sourceData;
 
 //// designated initializer method, creat presentAnimator, pushAnimator default.
 - (instancetype)initWithOriginalData:(FYTransitionData *)originalData finalData:(FYTransitionData *)finalData;

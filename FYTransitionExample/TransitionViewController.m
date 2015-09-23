@@ -10,7 +10,7 @@
 
 @interface TransitionViewController ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
 
 @end
 
@@ -18,7 +18,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    [self.transitionAnimator setTransitionDataCompletionBlock:^(BOOL didComepleted, FYTransitionData *finalData) {
+        NSLog(@"%@", finalData);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,6 +39,7 @@
 
 - (CGRect)fy_transitionImageViewFrame{
     NSLog(@"%@", NSStringFromCGRect(self.imageView.frame));
+    self.view.backgroundColor = [UIColor redColor];
     return self.imageView.frame;
 }
 
