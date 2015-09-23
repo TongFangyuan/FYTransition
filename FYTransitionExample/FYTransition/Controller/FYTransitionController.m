@@ -23,6 +23,7 @@ const CGFloat kFYTransitionControllerStatusHeight = 20;
 
 @implementation FYTransitionController
 
+
 - (instancetype)initWithOriginalImageView:(UIImageView *)originalImageView{
     self = [super init];
     
@@ -33,16 +34,6 @@ const CGFloat kFYTransitionControllerStatusHeight = 20;
         
     }
     return self;
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - privateMethod
@@ -135,9 +126,11 @@ const CGFloat kFYTransitionControllerStatusHeight = 20;
     if (fromVC == self) {
         
         /// set  the Navgation's delegate is nil at this time , Otherwise the Application might explode , Boom! Boom! Boom!
-        self.navigationController.delegate = nil;
+        navigationController.delegate = nil;
         return _transitionHelper.popAnimator;
+        
     } else if (toVC == self){
+        
         return _transitionHelper.pushAnimator;
     }
     return nil;

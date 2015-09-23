@@ -8,13 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-
+@class FYTransitionData;
 
 @interface FYTransitionController : UIViewController<UIViewControllerTransitioningDelegate,UINavigationControllerDelegate>
 
 //// designated initializer method
 - (instancetype) initWithOriginalImageView:(UIImageView *)originalImageView;
-
 
 - (CGRect)finalImageViewFrame;
 

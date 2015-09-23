@@ -11,33 +11,36 @@
 
 @interface FYTransitionAnimator : NSObject <UIViewControllerAnimatedTransitioning>
 
-@property (strong, nonatomic, readonly) FYTransitionData *sourceData;
-@property (strong, nonatomic, readonly) FYTransitionData *presentedData;
+@property (strong, nonatomic, readwrite) FYTransitionData *sourceData;
+@property (strong, nonatomic, readwrite) FYTransitionData *presentedData;
 
 //// designated initializer method, creat presentAnimator, pushAnimator default.
 - (instancetype)initWithOriginalData:(FYTransitionData *)originalData finalData:(FYTransitionData *)finalData;
 
+
++ (id)backwordAnimatorFromForwordAnimator:(FYTransitionAnimator *)forwordAnimator;
+
 //// The following two methods are used when present or dismiss a newController, used for popAnimator and pushAnimator transform each other
 
-/**
- *  convert presentAnimator to dismissAnimator
- *
- *  @param presentAnimator : UIViewControllerAnimatedTransitioning parameters when  present a controller
- *
- *  @return dismissAnimator : UIViewControllerAnimatedTransitioning parameters when  dismiss a controller
- */
-+ (id)dismissAnimatorFromPresentAnimator:(FYTransitionAnimator *)presentAnimator;
+
+
 
 /**
- *  convert dismissAnimator to presentAnimator
+ *  Push and present the callback after finishing Transition , which is used to update the target UI controller, including the frame, the image .
  *
- *  @param dismissAnimator : UIViewControllerAnimatedTransitioning parameters when  dismiss a controller
- *
- *  @return presentAnimator : UIViewControllerAnimatedTransitioning parameters when  present a controller
+ *  @param completionBlock imageView
+ 
+ *  @param imageView: After completion Transition of the imageview, used to set the image , frame of the target controller's imageView,
+ 
  */
-+ (id)presentAnimatorFromDismissAnimator:(FYTransitionAnimator *)dismissAnimator;
+- (void)setTransitionCompletionBlock:(void (^)(BOOL didComepleted, UIImageView *imageView))completionBlock;
 
 
+- (void)setTransitionDataCompletionBlock:(void (^)(BOOL didComepleted, FYTransitionData *finalData))completionBlock;
+
+@end
+
+@interface FYTransitionAnimator(Push)
 
 //// The following two methods are used when Push or Pop a newController , used for popAnimator and pushAnimator transform each other
 
@@ -59,15 +62,27 @@
  */
 + (id)pushAnimatorFrompopAnimator:(FYTransitionAnimator *)popAnimator;
 
+@end
 
+
+@interface FYTransitionAnimator (Modal)
 
 /**
- *  Push and present the callback after finishing Transition , which is used to update the target UI controller, including the frame, the image .
+ *  convert presentAnimator to dismissAnimator
  *
- *  @param completionBlock imageView
- 
- *  @param imageView: After completion Transition of the imageview, used to set the image , frame of the target controller's imageView,
- 
+ *  @param presentAnimator : UIViewControllerAnimatedTransitioning parameters when  present a controller
+ *
+ *  @return dismissAnimator : UIViewControllerAnimatedTransitioning parameters when  dismiss a controller
  */
-- (void)setTransitionCompletionBlock:(void (^)(BOOL didComepleted, UIImageView *imageView))completionBlock;
++ (id)dismissAnimatorFromPresentAnimator:(FYTransitionAnimator *)presentAnimator;
+
+/**
+ *  convert dismissAnimator to presentAnimator
+ *
+ *  @param dismissAnimator : UIViewControllerAnimatedTransitioning parameters when  dismiss a controller
+ *
+ *  @return presentAnimator : UIViewControllerAnimatedTransitioning parameters when  present a controller
+ */
++ (id)presentAnimatorFromDismissAnimator:(FYTransitionAnimator *)dismissAnimator;
+
 @end

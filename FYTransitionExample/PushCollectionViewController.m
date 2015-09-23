@@ -7,6 +7,7 @@
 //
 
 #import "PushCollectionViewController.h"
+#import "TransitionViewController.h"
 
 @interface PushCollectionViewController ()
 
@@ -27,12 +28,26 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     BaseCollectionViewCell *cell = (BaseCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    NSLog(@"%@", cell.imageView);
+
     UIImageView *oImageView = [[UIImageView alloc] initWithImage:cell.imageView.image];
     oImageView.frame =[cell.imageView convertRect:cell.imageView.frame toView:self.view];
-    ImageViewController *imageVC = [[ImageViewController alloc] initWithOriginalImageView:oImageView];
-    self.navigationController.delegate = imageVC;  
-    [self.navigationController pushViewController:imageVC animated:YES];
+    
+    FYTransitionData *data = [[FYTransitionData alloc] init];
+    data.imageView = oImageView;
+    data.frame = oImageView.frame;
+    FYTransition *transition = [FYTransition sharedTransition];
+    [transition setupAnimatorWithData:data];
+    self.navigationController.delegate = transition;
+    TransitionViewController *tc = [[TransitionViewController alloc] init];
+    transition.transitionAnimating = tc;
+    [self.navigationController pushViewController:tc animated:YES];
+    return;
+    
+//    UIImageView *oImageView = [[UIImageView alloc] initWithImage:cell.imageView.image];
+//    oImageView.frame =[cell.imageView convertRect:cell.imageView.frame toView:self.view];
+//    ImageViewController *imageVC = [[ImageViewController alloc] initWithOriginalImageView:oImageView];
+//    self.navigationController.delegate = imageVC;  
+//    [self.navigationController pushViewController:imageVC animated:YES];
     
 }
 

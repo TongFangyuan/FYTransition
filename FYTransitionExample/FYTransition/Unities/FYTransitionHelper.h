@@ -21,6 +21,8 @@
 @property (nonatomic, strong) FYTransitionAnimator *pushAnimator;
 @property (nonatomic, strong) FYTransitionAnimator *popAnimator;
 
+- (instancetype)initWithOriginalData:(FYTransitionData *)originalData;
+
 //// designated initializer method , creat presentAnimator default.
 - (instancetype)initWithOriginalImageView:(UIImageView *)originalImageView finalImageView:(UIImageView *)finalImageView;
 

@@ -11,9 +11,10 @@
 
 @interface FYTransitionData : NSObject
 
-@property(nonatomic ,strong) UIImageView *imageView;
-@property(nonatomic ,assign) CGRect frame;
-@property(nonatomic ,copy)   NSString * imageName;
+@property(nonatomic, strong) UIImageView * imageView;
+@property(nonatomic, assign) CGRect frame;
+@property(nonatomic, copy)   NSString * filename;
+@property(nonatomic, strong) UIImage * image;
 
 
 @end

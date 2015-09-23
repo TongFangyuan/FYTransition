@@ -8,7 +8,8 @@
 
 #import "FYTransitionAnimator.h"
 
-typedef void(^TFYTransitionCompletion)(BOOL didCompleted, UIImageView *imageView);
+typedef void(^FYTransitionCompletion)(BOOL didCompleted, UIImageView *imageView);
+typedef void(^FYTransitionCompletionData)(BOOL didCompleted, FYTransitionData *data);
 
 // constants for transition animation
 static const NSTimeInterval kAnimationDuration         = 0.3;
@@ -16,7 +17,8 @@ static const NSTimeInterval kAnimationCompleteDuration = 0.2;
 
 @interface FYTransitionAnimator()
 
-@property (nonatomic, copy) TFYTransitionCompletion transitionCompletion;
+@property (nonatomic, copy) FYTransitionCompletion transitionCompletion;
+@property (nonatomic, copy) FYTransitionCompletionData transitionCompletionData;
 
 @end
 
@@ -32,32 +34,24 @@ static const NSTimeInterval kAnimationCompleteDuration = 0.2;
         FYTransitionData *sData = [[FYTransitionData alloc] init];
         sData.imageView = originalData.imageView;
         sData.frame = originalData.frame;
+        sData.image = originalData.image;
+        sData.filename = originalData.filename;
         _sourceData = sData;
         
         FYTransitionData *pData = [[FYTransitionData alloc] init];
         pData.imageView = finalData.imageView;
         pData.frame = finalData.frame;
+        pData.image = finalData.image;
+        pData.filename = finalData.filename;
         _presentedData = pData;
     }
     return self;
 }
 
-+ (id)dismissAnimatorFromPresentAnimator:(FYTransitionAnimator *)presentAnimator{
-    return [[FYTransitionAnimator alloc] initWithOriginalData:presentAnimator.presentedData finalData:presentAnimator.sourceData];
++ (id)backwordAnimatorFromForwordAnimator:(FYTransitionAnimator *)forwordAnimator{
+    return [[FYTransitionAnimator alloc] initWithOriginalData:forwordAnimator.presentedData finalData:forwordAnimator.sourceData];
 }
 
-+ (id)presentAnimatorFromDismissAnimator:(FYTransitionAnimator *)dismissAnimator{
-    return [[FYTransitionAnimator alloc] initWithOriginalData:dismissAnimator.presentedData finalData:dismissAnimator.sourceData];
-}
-
-
-+ (id)popAnimatorFromPushAnimator:(FYTransitionAnimator *)pushAnimator{
-    return [[FYTransitionAnimator alloc] initWithOriginalData:pushAnimator.presentedData finalData:pushAnimator.sourceData];
-}
-
-+ (id)pushAnimatorFrompopAnimator:(FYTransitionAnimator *)popAnimator{
-    return [[FYTransitionAnimator alloc] initWithOriginalData:popAnimator.presentedData finalData:popAnimator.sourceData];
-}
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext{
     
@@ -103,9 +97,22 @@ static const NSTimeInterval kAnimationCompleteDuration = 0.2;
                                                  
                                                  //动画完成的回调
                                                  if (self.transitionCompletion) {
+                                                     
                                                      UIImageView *compeleImageview = [[UIImageView alloc] initWithImage:sourceImageView.image];
                                                      compeleImageview.frame = sourceImageView.frame;
-                                                     self.transitionCompletion(![transitionContext transitionWasCancelled], compeleImageview);
+                                                     if (self.transitionCompletion) {
+                                                         self.transitionCompletion(![transitionContext transitionWasCancelled], sourceImageView);
+                                                     }
+                                                     
+                                                     if (self.transitionCompletionData) {
+                                                         FYTransitionData *data = [[FYTransitionData alloc] init];
+                                                         data.image = self.presentedData.image;
+                                                         data.frame = self.presentedData.frame;
+                                                         data.filename = self.presentedData.filename;
+                                                         data.imageView = compeleImageview;
+                                                         self.transitionCompletionData(![transitionContext transitionWasCancelled], data);
+                                                     }
+                                                     
                                                  }
                                                  
                                                  [sourceImageView removeFromSuperview];
@@ -124,6 +131,35 @@ static const NSTimeInterval kAnimationCompleteDuration = 0.2;
 
 - (void)setTransitionCompletionBlock:(void (^)(BOOL, UIImageView *))completionBlock{
     self.transitionCompletion = completionBlock;
+}
+
+- (void)setTransitionDataCompletionBlock:(void (^)(BOOL, FYTransitionData *))completionBlock{
+    self.transitionCompletionData = completionBlock;
+}
+@end
+
+
+@implementation FYTransitionAnimator(Push)
+
++ (id)popAnimatorFromPushAnimator:(FYTransitionAnimator *)pushAnimator{
+    return [[FYTransitionAnimator alloc] initWithOriginalData:pushAnimator.presentedData finalData:pushAnimator.sourceData];
+}
+
++ (id)pushAnimatorFrompopAnimator:(FYTransitionAnimator *)popAnimator{
+    return [[FYTransitionAnimator alloc] initWithOriginalData:popAnimator.presentedData finalData:popAnimator.sourceData];
+}
+
+@end
+
+
+@implementation FYTransitionAnimator(Modal)
+
++ (id)dismissAnimatorFromPresentAnimator:(FYTransitionAnimator *)presentAnimator{
+    return [[FYTransitionAnimator alloc] initWithOriginalData:presentAnimator.presentedData finalData:presentAnimator.sourceData];
+}
+
++ (id)presentAnimatorFromDismissAnimator:(FYTransitionAnimator *)dismissAnimator{
+    return [[FYTransitionAnimator alloc] initWithOriginalData:dismissAnimator.presentedData finalData:dismissAnimator.sourceData];
 }
 
 @end

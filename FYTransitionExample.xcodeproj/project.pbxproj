@@ -43,6 +43,9 @@
 		811D38AD1BB14C57009224C3 /* BaseCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 811D38AB1BB14C57009224C3 /* BaseCollectionViewCell.xib */; };
 		8130D1871BB153B400D06F75 /* ModalCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8130D1861BB153B400D06F75 /* ModalCollectionViewController.m */; };
 		8130D18A1BB1549700D06F75 /* PushCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8130D1891BB1549700D06F75 /* PushCollectionViewController.m */; };
+		8157400F1BB259BB00C354B4 /* FYTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8157400E1BB259BB00C354B4 /* FYTransition.m */; };
+		815740141BB2834A00C354B4 /* TransitionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815740121BB2834A00C354B4 /* TransitionViewController.m */; };
+		815740151BB2834A00C354B4 /* TransitionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 815740131BB2834A00C354B4 /* TransitionViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +112,11 @@
 		8130D1861BB153B400D06F75 /* ModalCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalCollectionViewController.m; sourceTree = "<group>"; };
 		8130D1881BB1549700D06F75 /* PushCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushCollectionViewController.h; sourceTree = "<group>"; };
 		8130D1891BB1549700D06F75 /* PushCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushCollectionViewController.m; sourceTree = "<group>"; };
+		8157400D1BB259BB00C354B4 /* FYTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FYTransition.h; sourceTree = "<group>"; };
+		8157400E1BB259BB00C354B4 /* FYTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FYTransition.m; sourceTree = "<group>"; };
+		815740111BB2834A00C354B4 /* TransitionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitionViewController.h; sourceTree = "<group>"; };
+		815740121BB2834A00C354B4 /* TransitionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitionViewController.m; sourceTree = "<group>"; };
+		815740131BB2834A00C354B4 /* TransitionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransitionViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +161,7 @@
 				811D38861BB13DB3009224C3 /* FYTransition */,
 				811D37F71BB12B67009224C3 /* CollectionViewController */,
 				811D38851BB13D89009224C3 /* ImageViewController */,
+				815740101BB2831D00C354B4 /* TransitionController */,
 				811D37D01BB12754009224C3 /* AppDelegate.h */,
 				811D37D11BB12754009224C3 /* AppDelegate.m */,
 				811D389A1BB149D1009224C3 /* BaseTableViewController.h */,
@@ -266,6 +275,8 @@
 		811D388A1BB13DB3009224C3 /* Unities */ = {
 			isa = PBXGroup;
 			children = (
+				8157400D1BB259BB00C354B4 /* FYTransition.h */,
+				8157400E1BB259BB00C354B4 /* FYTransition.m */,
 				811D388B1BB13DB3009224C3 /* FYTransitionAnimator.h */,
 				811D388C1BB13DB3009224C3 /* FYTransitionAnimator.m */,
 				811D388D1BB13DB3009224C3 /* FYTransitionData.h */,
@@ -274,6 +285,16 @@
 				811D38901BB13DB3009224C3 /* FYTransitionHelper.m */,
 			);
 			path = Unities;
+			sourceTree = "<group>";
+		};
+		815740101BB2831D00C354B4 /* TransitionController */ = {
+			isa = PBXGroup;
+			children = (
+				815740111BB2834A00C354B4 /* TransitionViewController.h */,
+				815740121BB2834A00C354B4 /* TransitionViewController.m */,
+				815740131BB2834A00C354B4 /* TransitionViewController.xib */,
+			);
+			name = TransitionController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,6 +383,7 @@
 				811D37F31BB127AF009224C3 /* Main.storyboard in Resources */,
 				811D37DD1BB12754009224C3 /* LaunchScreen.xib in Resources */,
 				811D38381BB13874009224C3 /* icon_06.jpg in Resources */,
+				815740151BB2834A00C354B4 /* TransitionViewController.xib in Resources */,
 				811D38A61BB14B3B009224C3 /* BaseCollectionViewController.xib in Resources */,
 				811D38411BB13874009224C3 /* icon_15.jpg in Resources */,
 				811D383E1BB13874009224C3 /* icon_12.jpg in Resources */,
@@ -396,6 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				811D38981BB13DD7009224C3 /* ImageViewController.m in Sources */,
+				8157400F1BB259BB00C354B4 /* FYTransition.m in Sources */,
 				811D37D21BB12754009224C3 /* AppDelegate.m in Sources */,
 				8130D1871BB153B400D06F75 /* ModalCollectionViewController.m in Sources */,
 				811D38A51BB14B3B009224C3 /* BaseCollectionViewController.m in Sources */,
@@ -407,6 +430,7 @@
 				811D37CF1BB12754009224C3 /* main.m in Sources */,
 				811D389C1BB149D1009224C3 /* BaseTableViewController.m in Sources */,
 				811D38911BB13DB3009224C3 /* FYTransitionController.m in Sources */,
+				815740141BB2834A00C354B4 /* TransitionViewController.m in Sources */,
 				811D38921BB13DB3009224C3 /* FYTransitionAnimator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

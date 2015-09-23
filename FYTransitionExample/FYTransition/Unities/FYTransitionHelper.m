@@ -10,6 +10,19 @@
 
 @implementation FYTransitionHelper
 
+- (instancetype)initWithOriginalData:(FYTransitionData *)originalData{
+    self = [super init];
+    if (self) {
+        FYTransitionAnimator *originalAnimator = [[FYTransitionAnimator alloc] init];
+        originalAnimator.sourceData = originalData;
+        _presentAnimator = _pushAnimator = originalAnimator;
+        
+        FYTransitionAnimator *finalAnimator= [FYTransitionAnimator dismissAnimatorFromPresentAnimator:originalAnimator];
+        _dismissAnimator = _popAnimator = finalAnimator;
+    }
+    return self;
+}
+
 - (instancetype)initWithOriginalImageView:(UIImageView *)originalImageView finalImageView:(UIImageView *)finalImageView {
     
     self = [super init];
