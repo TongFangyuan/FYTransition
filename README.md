@@ -20,9 +20,9 @@
 
 使用默认的方式
 ===============
->.创建一个集成自 FYTransitionController 的类就可以了
+>.创建一个集成自 FYTransitionController 的子控制器类就可以了
 
-#import "FYTransitionController.h"
+import "FYTransitionController.h"
 
 @interface ImageViewController : FYTransitionController 
 
@@ -43,27 +43,27 @@
 <br /><br />
 
 >2.实现FYTransitionProtocol相关的方法
-#pragma mark FYTransitionControllerProtocol
+
 - (void)fy_transitionCompleteAnimateImageView:(UIImageView *)imageView{
-self.mainImageView.image = imageView.image;
-self.mainImageView.backgroundColor = [UIColor greenColor];
-self.mainImageView.userInteractionEnabled = YES;
-self.mainImageView.clipsToBounds = YES;
-UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFinalImageView:)];
-[self.mainImageView addGestureRecognizer:tapGesture];
+    self.mainImageView.image = imageView.image;
+    self.mainImageView.backgroundColor = [UIColor greenColor];
+    self.mainImageView.userInteractionEnabled = YES;
+    self.mainImageView.clipsToBounds = YES;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFinalImageView:)];
+    [self.mainImageView addGestureRecognizer:tapGesture];
 }
 
 - (CGRect)fy_transitionFinalImageViewFrame{
-return  CGRectMake(10, 65, 300, 300);
+    return  CGRectMake(10, 65, 300, 300);
 }
 
 - (void)tapFinalImageView:(UITapGestureRecognizer *)tapGesture{
 
-if (self.navigationController.delegate == self) {
-[self.navigationController popViewControllerAnimated:YES];
-} else if (self.transitioningDelegate == self) {
-[self dismissViewControllerAnimated:YES completion:nil];
-}
+    if (self.navigationController.delegate == self) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else if (self.transitioningDelegate == self) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 
 }
 <br /><br />
