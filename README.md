@@ -15,12 +15,12 @@
 ![image](./FYTransitionExample/gif/modal.gif)<br /><br /><br />
 
 
-简单上手
+简单上手(使用默认方式)
 ===============
 
     /**
-     *  1.使用默认的方式
-     *  创建一个继承自 FYTransitionController 的子类控制即可
+     *  使用默认的方式,导入头文件 FYTransitionController.h
+     *  创建一个继承自 FYTransitionController 的子类控制器即可
      */
     @interface ImageViewController : FYTransitionController 
 
@@ -28,3 +28,51 @@
 
     @end
 
+<br /> <br />
+
+自定义图片(图片在下一个控制器的位置)的位置
+===================================
+    /**
+     *  1.导入头文件 FYTransitionController.h
+     *  创建一个继承自 FYTransitionController 的子类控制器,并且遵守 FYTransitionProtocol 协议
+     */
+    @interface CustomViewController : FYTransitionController <FYTransitionProtocol>
+
+    @end
+
+    /**
+     *   返回imageView的位置,需要特别注意的是,如果使用xib布局的话,不能直接返回控件的frame,
+     * 因为控件还未初始化,所以在这里得用代码设置imageView的位置
+     *
+     *  @return 返回imageView在其父控件的frame
+     */
+    - (CGRect)fy_transitionFinalImageViewFrame{
+        return  CGRectMake(10, 65, 300, 300);
+    }
+
+    /**
+     *   动画完成后的回调,获得最终imageView,在此回调中将imageView添加到父控件中,
+     * 在下面的方法中没有添加 imageView 的相关代码是因为使用了xib,直接赋值就好了
+     *
+     *  @param imageView 回调传值
+     */
+    - (void)fy_transitionCompleteAnimateImageView:(UIImageView *)imageView{
+        self.mainImageView.image = imageView.image;
+        self.mainImageView.backgroundColor = [UIColor greenColor];
+        self.mainImageView.userInteractionEnabled = YES;
+        self.mainImageView.clipsToBounds = YES;
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFinalImageView:)];
+        [self.mainImageView addGestureRecognizer:tapGesture];
+    }
+
+    - (void)tapFinalImageView:(UITapGestureRecognizer *)tapGesture{
+
+        if (self.navigationController.delegate == self) {
+            [self.navigationController popViewControllerAnimated:YES];
+        } else if (self.transitioningDelegate == self) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+
+    }
+
+<br /><br />
