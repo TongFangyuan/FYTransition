@@ -39,7 +39,7 @@
     @interface CustomViewController : FYTransitionController <FYTransitionProtocol>
 
     @end
-
+--------------------------
     /**
      *   返回imageView的位置,需要特别注意的是,如果使用xib布局的话,不能直接返回控件的frame,
      * 因为控件还未初始化,所以在这里得用代码设置imageView的位置
