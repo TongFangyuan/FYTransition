@@ -45,6 +45,8 @@
 		8130D18A1BB1549700D06F75 /* PushCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8130D1891BB1549700D06F75 /* PushCollectionViewController.m */; };
 		815740191BB2A90F00C354B4 /* CustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815740171BB2A90F00C354B4 /* CustomViewController.m */; };
 		8157401A1BB2A90F00C354B4 /* CustomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 815740181BB2A90F00C354B4 /* CustomViewController.xib */; };
+		8181975C1BB397070073DC75 /* modal.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8181975A1BB397070073DC75 /* modal.gif */; };
+		8181975D1BB397070073DC75 /* push.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8181975B1BB397070073DC75 /* push.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +116,8 @@
 		815740161BB2A90F00C354B4 /* CustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewController.h; sourceTree = "<group>"; };
 		815740171BB2A90F00C354B4 /* CustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewController.m; sourceTree = "<group>"; };
 		815740181BB2A90F00C354B4 /* CustomViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomViewController.xib; sourceTree = "<group>"; };
+		8181975A1BB397070073DC75 /* modal.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = modal.gif; sourceTree = "<group>"; };
+		8181975B1BB397070073DC75 /* push.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = push.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +180,7 @@
 		811D37CC1BB12754009224C3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				818197591BB397070073DC75 /* gif */,
 				811D381F1BB136AE009224C3 /* Reveal.framework */,
 				811D37CD1BB12754009224C3 /* Info.plist */,
 				811D37CE1BB12754009224C3 /* main.m */,
@@ -284,6 +289,15 @@
 			path = Unities;
 			sourceTree = "<group>";
 		};
+		818197591BB397070073DC75 /* gif */ = {
+			isa = PBXGroup;
+			children = (
+				8181975A1BB397070073DC75 /* modal.gif */,
+				8181975B1BB397070073DC75 /* push.gif */,
+			);
+			path = gif;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -366,10 +380,12 @@
 			files = (
 				811D38351BB13874009224C3 /* icon_03.jpg in Resources */,
 				811D38AD1BB14C57009224C3 /* BaseCollectionViewCell.xib in Resources */,
+				8181975C1BB397070073DC75 /* modal.gif in Resources */,
 				811D38371BB13874009224C3 /* icon_05.jpg in Resources */,
 				811D37F31BB127AF009224C3 /* Main.storyboard in Resources */,
 				811D37DD1BB12754009224C3 /* LaunchScreen.xib in Resources */,
 				811D38381BB13874009224C3 /* icon_06.jpg in Resources */,
+				8181975D1BB397070073DC75 /* push.gif in Resources */,
 				811D38A61BB14B3B009224C3 /* BaseCollectionViewController.xib in Resources */,
 				811D38411BB13874009224C3 /* icon_15.jpg in Resources */,
 				811D383E1BB13874009224C3 /* icon_12.jpg in Resources */,
