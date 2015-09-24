@@ -18,6 +18,8 @@
 一.简单上手(使用默认方式)
 ===============
 
+1.在.h文件中继承父类
+--------------------------
     /**
      *  使用默认的方式,导入头文件 FYTransitionController.h
      *  创建一个继承自 FYTransitionController 的子类控制器即可
@@ -27,6 +29,18 @@
     @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
     @end
+
+2.push或者modal出控制器
+--------------------------
+
+    UIImageView *oImageView = [[UIImageView alloc] initWithImage:cell.imageView.image];
+    oImageView.frame =[cell.imageView convertRect:cell.imageView.frame toView:self.view];
+    ImageViewController *imageVC = [[ImageViewController alloc] initWithOriginalImageView:oImageView];
+    imageVC.transitioningDelegate = imageVC;
+    imageVC.view.backgroundColor = [UIColor darkGrayColor];
+    [self presentViewController:imageVC animated:YES completion:^{
+        imageVC.titleLabel.text = cell.label.text;
+    }];
 
 <br /> <br />
 
@@ -79,5 +93,18 @@
         }
 
     }
+
+3.push或者modal出控制器
+--------------------------
+
+    UIImageView *oImageView = [[UIImageView alloc] initWithImage:cell.imageView.image];
+    oImageView.frame =[cell.imageView convertRect:cell.imageView.frame toView:self.view];
+    ImageViewController *imageVC = [[ImageViewController alloc] initWithOriginalImageView:oImageView];
+    imageVC.transitioningDelegate = imageVC;
+    imageVC.view.backgroundColor = [UIColor darkGrayColor];
+    [self presentViewController:imageVC animated:YES completion:^{
+        imageVC.titleLabel.text = cell.label.text;
+    }];
+
 
 <br /><br />
