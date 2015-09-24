@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
                    DESC
 
   s.homepage     = "https://github.com/TongFangyuan/FYTransition"
-  s.screenshots  = "https://github.com/TongFangyuan/FYTransition/blob/master/FYTransitionExample/gif/push.gif", "https://github.com/TongFangyuan/FYTransition/blob/master/FYTransitionExample/gif/modal.gif"
+  s.screenshots  = "https://raw.githubusercontent.com/TongFangyuan/FYTransition/master/FYTransitionExample/gif/push.gif", "https://raw.githubusercontent.com/TongFangyuan/FYTransition/master/FYTransitionExample/gif/modal.gif"
 
 
   s.license      = "MIT"
