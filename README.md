@@ -32,13 +32,18 @@
 
 自定义图片(图片在下一个控制器的位置)的位置
 ===================================
+
+1.在.h文件中继承父类并遵守协议
+--------------------------
     /**
-     *  1.导入头文件 FYTransitionController.h
+     *  导入头文件 FYTransitionController.h
      *  创建一个继承自 FYTransitionController 的子类控制器,并且遵守 FYTransitionProtocol 协议
      */
     @interface CustomViewController : FYTransitionController <FYTransitionProtocol>
 
     @end
+
+2.在.m文件中实现协议方法
 --------------------------
     /**
      *   返回imageView的位置,需要特别注意的是,如果使用xib布局的话,不能直接返回控件的frame,
