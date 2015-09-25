@@ -33,7 +33,6 @@
     
     if (self.isCustom) {
         CustomViewController *imageVC = [[CustomViewController alloc] initWithOriginalImageView:oImageView];
-        imageVC.title = @"大图";
         self.navigationController.delegate = imageVC;
         [self.navigationController pushViewController:imageVC animated:YES];
     } else {
