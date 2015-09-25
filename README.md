@@ -35,9 +35,12 @@
 
     UIImageView *oImageView = [[UIImageView alloc] initWithImage:cell.imageView.image];
     oImageView.frame =[cell.imageView convertRect:cell.imageView.frame toView:self.view];
+
     ImageViewController *imageVC = [[ImageViewController alloc] initWithOriginalImageView:oImageView];
-    imageVC.transitioningDelegate = imageVC;
     imageVC.view.backgroundColor = [UIColor darkGrayColor];
+
+    //一定得设置代理,不然自动转场动画无法生效
+    imageVC.transitioningDelegate = imageVC;
     [self presentViewController:imageVC animated:YES completion:^{
         imageVC.titleLabel.text = cell.label.text;
     }];
@@ -99,12 +102,12 @@
 
     UIImageView *oImageView = [[UIImageView alloc] initWithImage:cell.imageView.image];
     oImageView.frame =[cell.imageView convertRect:cell.imageView.frame toView:self.view];
+
     ImageViewController *imageVC = [[ImageViewController alloc] initWithOriginalImageView:oImageView];
-    imageVC.transitioningDelegate = imageVC;
-    imageVC.view.backgroundColor = [UIColor darkGrayColor];
-    [self presentViewController:imageVC animated:YES completion:^{
-        imageVC.titleLabel.text = cell.label.text;
-    }];
+    
+    //一定得设置代理,不然自动转场动画无法生效
+    self.navigationController.delegate = imageVC;
+    [self.navigationController pushViewController:imageVC animated:YES];
 
 
 <br /><br />
